@@ -7,19 +7,19 @@ from PIL import Image
 import json
 
 import matplotlib.pyplot as plt#시각화를 위한 package
-#구글 드라이브에서 로딩하기 위해서 추가
+
 
 model = models.resnet101(pretrained=True)# Model로 ResNet-101버전 로딩
 model.eval()
 print(model)#모델 구조 프린트
 
-CLASSES = json.load(open('imagenet_class.json'))
+CLASSES = json.load(open('data/imagenet_classes.json'))
 #학습을 위한 데이터셋(클래스 Json)파일 로딩
 idx2class = [CLASSES[str(i)] for i in range(1000)]
 #Class 별 ID 셋팅
 
 # 이미지 불러오기
-img = Image.open('panda.jpg')
+img = Image.open('data/origin_img/tree.jpg')
 
 # 이미지를 텐서로 변환하기
 img_transforms = transforms.Compose([
@@ -108,4 +108,5 @@ a[0].imshow(original_img_view)
 a[1].set_title(perturbed_prediction_name)
 a[1].imshow(perturbed_data_view)
 
+plt.imsave("data/perturbed_img/001.png", perturbed_data_view)
 plt.show()
