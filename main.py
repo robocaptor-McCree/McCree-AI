@@ -23,7 +23,7 @@ def parse_args(args):
     parser.add_argument('--mode', help='single-image or directory', default="directory", type=str)
     parser.add_argument('--single-img', help='single image path', type=str)
     parser.add_argument('--dir', help='directory path', type=str)
-    parser.add_argument('--save', help='save directory path', default="data/perturbed_img/", type=str)
+    parser.add_argument('--save', help='save directory path', default="data/origin_img", default="data/perturbed_img/", type=str)
     parser.add_argument('--annotation', help='annotation file', default="data/imagenet_classes.json", type=str)
 
     #TODO: attack에 사용할 모델
