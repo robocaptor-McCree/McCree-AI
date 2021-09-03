@@ -59,11 +59,11 @@ def attack(tensor_img, model):
     # 미분값을 저장하여, gradient 값 추출
 
     # 이미지의 기울기값을 추출
-    gradient = img_tensor.grad.data
+    gradient = tensor_img.grad.data
 
     # FGSM 공격으로 적대적 예제 생성
     epsilon = 0.03
-    perturbed_img = fgsm_attack(img_tensor, epsilon, gradient)
+    perturbed_img = fgsm_attack(tensor_img, epsilon, gradient)
 
     return perturbed_img
 
