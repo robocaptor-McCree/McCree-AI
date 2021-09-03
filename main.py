@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-#import torch
-#import torch.nn.functional as F
+import torch
+import torch.nn.functional as F
 import torchvision.models as models
 import torchvision.transforms as transforms
 
