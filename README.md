@@ -35,6 +35,9 @@ FGSM은 원본 이미지의 손실을 최대화하는 것을 목표로 하기 �
  
 따라서 FGSM은 원본 이미지만으로도 학습이 종료된 상태의 모델(매크로)을 혼란시킬 수 있다.
 
+![image](https://user-images.githubusercontent.com/51123268/132466980-5e9a01c5-58f9-4acd-bd6b-7c2c42b40382.png)
+
+
 ## Table of Contents
 
 - [Install](#install)
@@ -60,7 +63,7 @@ $ python main.py
 
   반대로 epsilon을 크게하면, noise가 늘어나 image의 왜곡이 많아진다. 
 
-  epsilon의 기본값은 0.03으로 했다.
+  epsilon의 기본값은 0.03으로 설정했다.
   
 ```python
 def fgsm(img, epsilon, gradient):
