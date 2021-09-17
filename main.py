@@ -85,7 +85,6 @@ def image2tensor(img):
 
 
 def main(args=None):
-
     args = parse_args(args)
 
     model = models.resnet101(pretrained=True)  # Model로 ResNet-101버전 로딩
@@ -100,7 +99,7 @@ def main(args=None):
     # 이미지 불러오기
     if args.mode == 'single-image':
         img = Image.open(args.single_img)
-        img_name = args.single_img
+        img_name = args.single_img.split("/")[-1]
 
         # 이미지를 텐서로 변환하기
         tensor_img = image2tensor(img)
@@ -118,9 +117,9 @@ def main(args=None):
         imgs = glob(args.dir + '/*')
 
         for img in imgs:
-            img_name = img
+            img_name = img.split("/")[-1]
             img = Image.open(img)
-            img_name = img_name
+            print("img name : ", img_name)
 
             # 이미지를 텐서로 변환하기
             tensor_img = image2tensor(img)
@@ -133,11 +132,9 @@ def main(args=None):
             # 이미지 저
             plt.imsave(args.save + img_name, perturbed_img_view)
 
-
-
     """
     오리지널 이미지 시각화 코드 
-    
+
     # 시각화를 위해 넘파이 행렬 변환
     original_img_view = img_tensor.squeeze(0).detach()  # [1, 3, 244, 244] -> [3, 244, 244]
     original_img_view = original_img_view.transpose(0, 2).transpose(0, 1).numpy()
@@ -148,7 +145,7 @@ def main(args=None):
 
     """
     original data classification 테스트 코드
-    
+
     output = model(img_tensor)
     prediction = output.max(1, keepdim=False)[1]
     # 가장 확률이 높은 예측 클래스(prediction)
@@ -162,7 +159,7 @@ def main(args=None):
 
     """
     perturbed data classification 테스트 코드
-    
+
         # 생성된 적대적 예제를 모델에 통과시킴
     output = model(perturbed_data)
 
